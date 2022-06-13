@@ -6,7 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import lombok.Data;
 
 @Entity
@@ -17,6 +17,6 @@ public class Genero {
     private Integer id;
     private String nombre;
     private String imagen;
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Pelicula> peliculas;
 }

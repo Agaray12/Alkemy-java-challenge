@@ -1,8 +1,13 @@
 package com.java.challenge.services;
 
+import com.java.challenge.dto.PeliculaDTO;
+import com.java.challenge.models.Genero;
 import com.java.challenge.models.Pelicula;
+import com.java.challenge.models.Personaje;
 import com.java.challenge.repositories.PeliculaRepositorio;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +25,50 @@ public class PeliculaServicio {
         return peliculaRepo.findAll();
     }
     
+    public Optional<Pelicula> findById(Integer id) {
+        return peliculaRepo.findById(id);
+    }
+    
+    public List<Pelicula> filterByTitle(String name){
+        return peliculaRepo.filterByTitle(name);
+    }
+    
+    public List<Pelicula> ascOrder(){
+        return peliculaRepo.ascOrder();
+    }
+    
+    public List<Pelicula> descOrder() {
+        return peliculaRepo.descOrder();
+    }
+    
+    public List<PeliculaDTO> setToDTO(List<Pelicula> peliculas) {
+        List<PeliculaDTO> peliculasDTO = new ArrayList<>();
+        for (Pelicula pelicula : peliculas) {
+            PeliculaDTO peliculaDTO = new PeliculaDTO();
+            peliculaDTO.setId(pelicula.getId());
+            peliculaDTO.setImagen(pelicula.getImagen());
+            peliculaDTO.setTitulo(pelicula.getTitulo());
+            peliculaDTO.setFechaCreacion(pelicula.getFechaCreacion());
+            peliculasDTO.add(peliculaDTO);
+        }
+        return peliculasDTO;
+    }
+    
     public Pelicula update(Pelicula pelicula) {
         return peliculaRepo.save(pelicula);
     }
     
-    public void delteById(Integer id) {
+    public void deleteById(Integer id) {
         peliculaRepo.deleteById(id);
+    }
+    
+    public void addCharacterToMovie(Pelicula pelicula, Personaje personaje) {
+        pelicula.getPersonajes().add(personaje);
+        peliculaRepo.save(pelicula);
+    }
+    
+    public void deleteCharacterFromMovie(Pelicula pelicula, Personaje personaje) {
+        pelicula.getPersonajes().remove(personaje);
+        peliculaRepo.save(pelicula);
     }
 }

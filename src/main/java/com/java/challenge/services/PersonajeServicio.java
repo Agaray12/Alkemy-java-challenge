@@ -6,6 +6,7 @@ import com.java.challenge.models.Personaje;
 import com.java.challenge.repositories.PersonajeRepositorio;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,10 @@ public class PersonajeServicio {
     
     public List<Personaje> findAll(){
         return personajeRepo.findAll();
+    }
+    
+    public Optional<Personaje> findById(Integer id) {
+        return personajeRepo.findById(id);
     }
     
     public List<Personaje> filterByName(String name) {
@@ -53,5 +58,11 @@ public class PersonajeServicio {
     
     public void addMovieToCharacter(Personaje personaje, Pelicula pelicula) {
         personaje.getPeliculas().add(pelicula);
+        personajeRepo.save(personaje);
+    }
+    
+    public void deleteMovieFromCharacter(Personaje personaje, Pelicula pelicula) {
+        personaje.getPeliculas().remove(pelicula);
+        personajeRepo.save(personaje);
     }
 }
