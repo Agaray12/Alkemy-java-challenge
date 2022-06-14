@@ -48,8 +48,23 @@ public class PersonajeServicio {
         return personajesDTO;
     }
     
-    public Personaje update(Personaje personaje) {
-        return personajeRepo.save(personaje);
+    public Personaje update(Personaje personaje, Personaje personajeDB) {
+        if(personaje.getNombre() != null){
+            personajeDB.setNombre(personaje.getNombre());
+        }
+        if(personaje.getImagen() != null) {
+            personajeDB.setImagen(personaje.getImagen());
+        }
+        if(personaje.getEdad() != null) {
+            personajeDB.setEdad(personaje.getEdad());
+        }
+        if(personaje.getHistoria()!= null) {
+            personajeDB.setHistoria(personaje.getHistoria());
+        }
+        if(personaje.getPeso() != null) {
+            personajeDB.setPeso(personaje.getPeso());
+        }
+        return personajeRepo.save(personajeDB);
     }
     
     public void delteById(Integer id) {

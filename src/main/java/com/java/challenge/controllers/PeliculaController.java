@@ -78,10 +78,12 @@ public class PeliculaController {
     
     @PostMapping("/update")
     public ResponseEntity<Pelicula> actualizarPelicula(@RequestBody Pelicula pelicula){
-        if(peliculaServicio.findById(pelicula.getId()) != null){
-            return new ResponseEntity<>(peliculaServicio.update(pelicula), HttpStatus.FOUND);
+        Optional<Pelicula> aux = peliculaServicio.findById(pelicula.getId());
+        if(aux.isPresent()){
+            Pelicula peliculaDB = aux.get();
+            return new ResponseEntity(peliculaServicio.update(pelicula, peliculaDB), HttpStatus.FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
     
     @GetMapping("")

@@ -54,8 +54,22 @@ public class PeliculaServicio {
         return peliculasDTO;
     }
     
-    public Pelicula update(Pelicula pelicula) {
-        return peliculaRepo.save(pelicula);
+    public Pelicula update(Pelicula pelicula, Pelicula peliculaDB) {
+        
+        if(pelicula.getTitulo() != null){
+            peliculaDB.setTitulo(pelicula.getTitulo());
+        }
+        if(pelicula.getImagen() != null) {
+            peliculaDB.setImagen(pelicula.getImagen());
+        }
+        if(pelicula.getFechaCreacion() != null) {
+            peliculaDB.setFechaCreacion(pelicula.getFechaCreacion());
+        }
+        if(pelicula.getCalificacion() != null) {
+            peliculaDB.setCalificacion(pelicula.getCalificacion());
+        }
+        
+        return peliculaRepo.save(peliculaDB);
     }
     
     public void deleteById(Integer id) {

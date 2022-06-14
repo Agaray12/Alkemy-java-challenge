@@ -29,12 +29,17 @@ public class PersonajeController {
     
     @PostMapping("/create")
     public ResponseEntity<Personaje> crear(@RequestBody Personaje personaje) {
-        return new ResponseEntity<>(personajeServicio.save(personaje), HttpStatus.CREATED);
+        return new ResponseEntity(personajeServicio.save(personaje), HttpStatus.CREATED);
     }
     
     @PostMapping("/update")
     public ResponseEntity<Personaje> actualizar(@RequestBody Personaje personaje) {
-        return new ResponseEntity<>(personajeServicio.update(personaje), HttpStatus.FOUND);
+        Optional<Personaje> aux = personajeServicio.findById(personaje.getId());
+        if(aux.isPresent()){
+                Personaje personajeDB = aux.get();
+            return new ResponseEntity(personajeServicio.update(personaje, personajeDB), HttpStatus.FOUND);
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
     
     @GetMapping("")
