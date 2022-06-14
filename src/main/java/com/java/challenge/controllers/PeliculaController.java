@@ -76,6 +76,14 @@ public class PeliculaController {
         return generoServicio.setToDTO(generoServicio.findAll());
     }
     
+    @PostMapping("/update")
+    public ResponseEntity<Pelicula> actualizarPelicula(@RequestBody Pelicula pelicula){
+        if(peliculaServicio.findById(pelicula.getId()) != null){
+            return new ResponseEntity<>(peliculaServicio.update(pelicula), HttpStatus.FOUND);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    
     @GetMapping("")
     public List<PeliculaDTO> mostrar (@RequestParam(required = false) String name, @RequestParam(required = false) Integer genre, @RequestParam(required = false) String order){
         

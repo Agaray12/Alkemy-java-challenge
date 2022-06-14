@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/characters")
 public class PersonajeController {
     
-    private PersonajeDTO personajeDTO = new PersonajeDTO();
-    
     @Autowired
     private PersonajeServicio personajeServicio;
     
@@ -32,6 +30,11 @@ public class PersonajeController {
     @PostMapping("/create")
     public ResponseEntity<Personaje> crear(@RequestBody Personaje personaje) {
         return new ResponseEntity<>(personajeServicio.save(personaje), HttpStatus.CREATED);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<Personaje> actualizar(@RequestBody Personaje personaje) {
+        return new ResponseEntity<>(personajeServicio.update(personaje), HttpStatus.FOUND);
     }
     
     @GetMapping("")
