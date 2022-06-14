@@ -44,8 +44,6 @@ Endpoints:
 
 -POST /characters/update (Actualizar datos de un personaje ya existente)
 
--------------------------------
-
 -POST /movies/{idMovie}/characters/{idCharacter} (Agregar un personaje a una película)
 
 -DELETE /movies/{idMovie}/characters/{idCharacter} (Eliminar personaje de una película)
