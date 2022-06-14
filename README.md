@@ -20,6 +20,12 @@ Endpoints:
 
 -GET /movies (Desplegar todas las peliculas con sus datos)
 
+-GET /movies?name=nombre (Filtrar películas por título)
+
+-GET /movies?genre=idGenero (Filtrar películas por género)
+
+-GET /movies?order=ASC | DESC (Filtrar películas por orden ascendente o descendente)
+
 -POST /movies/create (Crear una película nueva)
 
 -POST /movies/update (Actualizar datos de una película ya existente)
@@ -27,6 +33,12 @@ Endpoints:
 -------------------------------
 
 -GET /characters (Desplegar todos los personajes con sus datos)
+
+-GET /characters?name=nombre (Filtrar personajes por su nombre)
+
+-GET /characters?age=edad (Filtrar personajes por su edad)
+
+-GET /characters?movies=idMovie (Filtrar personajes por película)
 
 -POST /characters/create (Crear un personaje nuevo)
 
