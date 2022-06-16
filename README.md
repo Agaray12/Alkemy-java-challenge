@@ -18,6 +18,12 @@ Tecnologías utilizadas:
 
 Endpoints:
 
+-POST /auth/register (Registrar usuario)
+
+-POST /auth/login (Loguear usuario)
+
+-------------------------------
+
 -GET /movies (Desplegar todas las peliculas con sus datos)
 
 -GET /movies?name=nombre (Filtrar películas por título)
