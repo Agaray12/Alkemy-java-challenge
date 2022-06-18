@@ -1,7 +1,6 @@
 package com.java.challenge.services;
 
 import com.java.challenge.dto.PeliculaDTO;
-import com.java.challenge.models.Genero;
 import com.java.challenge.models.Pelicula;
 import com.java.challenge.models.Personaje;
 import com.java.challenge.repositories.PeliculaRepositorio;

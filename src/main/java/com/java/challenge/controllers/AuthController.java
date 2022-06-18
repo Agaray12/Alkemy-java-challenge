@@ -32,11 +32,10 @@ public class AuthController {
     
     @PostMapping("/register")
     public ResponseEntity<?> registrarUsuario(@RequestBody Usuario usuario) {
-        if(usuario != null){
-            usuarioServicio.save(usuario);
-            return new ResponseEntity(HttpStatus.CREATED);
+        if(usuarioServicio.save(usuario) == null){
+            return new ResponseEntity(HttpStatus.UNPROCESSABLE_ENTITY);
         }
-        return new ResponseEntity(HttpStatus.UNPROCESSABLE_ENTITY);
+        return new ResponseEntity(HttpStatus.CREATED);    
     }
     
     @PostMapping("/login")

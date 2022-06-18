@@ -26,6 +26,9 @@ public class UsuarioServicio implements UserDetailsService{
     private MailSenderServicio mailSender;
     
     public Usuario save(Usuario usuario) {
+        if(!is_valid(usuario)){
+            return null;
+        }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         usuario.setPassword(encoder.encode(usuario.getPassword()));
         usuario.setRole(Role.USER);
@@ -51,6 +54,41 @@ public class UsuarioServicio implements UserDetailsService{
     
     public void deleteById(Integer id) {
         usuarioRepo.deleteById(id);
+    }
+    
+    public boolean existsByUsername(String username){
+        if(findByUsername(username) != null){
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean existsByEmail(String email){
+        if(findByEmail(email) != null) {
+            return true;
+        }
+        return false;
+    }
+    public boolean is_valid (Usuario usuario){
+        if(usuario.getPassword().isEmpty() || usuario.getPassword() == null){
+            return false;
+        }
+        if(usuario.getUsername().isEmpty() || usuario.getUsername() == null){
+            return false;
+        }
+        if(usuario.getEmail().isEmpty() || usuario.getEmail() == null){
+            return false;
+        }
+        if(existsByEmail(usuario.getEmail())){
+            return false;
+        }
+        if(existsByUsername(usuario.getUsername())){
+            return false;
+        }
+        if(!usuario.getEmail().contains("@")){
+            return false;
+        }
+        return true;
     }
     
     @Override

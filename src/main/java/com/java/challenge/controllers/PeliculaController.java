@@ -36,12 +36,15 @@ public class PeliculaController {
     private GeneroServicio generoServicio;
     
     @PostMapping("/create")
-    public ResponseEntity<Pelicula> crear(@RequestBody Pelicula pelicula) {
+    public ResponseEntity<Pelicula> crearPelicula(@RequestBody Pelicula pelicula) {
         return new ResponseEntity<>(peliculaServicio.save(pelicula), HttpStatus.CREATED);
     }
     
     @PostMapping("/genre/create")
     public ResponseEntity<Genero> crearGenero(@RequestBody Genero genero) {
+        if(generoServicio.findById(genero.getId()) != null){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity(generoServicio.save(genero), HttpStatus.CREATED);
     }
     
