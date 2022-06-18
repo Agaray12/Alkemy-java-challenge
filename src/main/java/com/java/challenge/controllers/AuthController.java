@@ -1,6 +1,5 @@
 package com.java.challenge.controllers;
 
-import com.java.challenge.dto.TokenInfo;
 import com.java.challenge.dto.UsuarioDTO;
 import com.java.challenge.models.Usuario;
 import com.java.challenge.services.JwtUtilServicio;
@@ -11,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,11 +45,11 @@ public class AuthController {
         
         UserDetails userDetails = usuarioServicio.loadUserByUsername(request.getUsername());
         
-        String jwt = jwtUtilServicio.generateToken(userDetails);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         
-        TokenInfo tokenInfo = new TokenInfo(jwt);
-        System.out.println(tokenInfo);
-        return ResponseEntity.ok(tokenInfo);
+        String jwt = jwtUtilServicio.generateToken(userDetails);
+
+        return ResponseEntity.ok(jwt);
     }
     
 }
