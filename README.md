@@ -1,4 +1,4 @@
-ALKEMY CHALLENGE BACKEND - Java Spring Boot (API)
+ALKEMY CHALLENGE BACKEND - Java Spring Boot (REST API)
 
 -------------------------------
 
@@ -13,6 +13,10 @@ Tecnologías utilizadas:
 -SpringBoot
 
 -Spring Security
+
+-JWT para la autenticación y autorización
+
+-SendGrid para el mail de bienvenida
 
 -------------------------------
 
