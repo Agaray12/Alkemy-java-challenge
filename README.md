@@ -14,6 +14,10 @@ Tecnologías utilizadas:
 
 -Spring Security
 
+-JWT para la autenticación y autorización
+
+-SendGrid para el mail de bienvenida
+
 -------------------------------
 
 Endpoints:
