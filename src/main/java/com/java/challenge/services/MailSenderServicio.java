@@ -16,7 +16,7 @@ public class MailSenderServicio {
     private String email_sender = ""; //set your email sender here
     
     public void sendMail(String to){
-        String key = System.getenv("SENDGRID_API_KEY");
+        String key = System.getenv("SENDGRID_API_KEY");  //set a new environment variable called SENDGRID_API_KEY with your sendgrid key value 
         Email from = new Email(email_sender);
         Email toEmail = new Email(to);
         
