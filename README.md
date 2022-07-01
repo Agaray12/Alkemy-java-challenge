@@ -1,4 +1,4 @@
-ALKEMY CHALLENGE BACKEND - Java Spring Boot (API)
+ALKEMY CHALLENGE BACKEND - Java Spring Boot (REST API)
 
 -------------------------------
 
